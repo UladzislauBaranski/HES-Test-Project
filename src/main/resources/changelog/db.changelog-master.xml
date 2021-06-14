@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="vladbaransky@gmail.com">
+        <createTable tableName="user" schemaName="users">
+
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(255)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="first_name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
+            <column name="role" type="varchar(20)"/>
+            <column name="status" type="varchar(20)"/>
+            <column name="created_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="vladbaransky@gmail.com">
+         <insert tableName="user" schemaName="users">
+             <column name="username" value="admin"/>
+             <column name="password" value="$2y$12$cZp9hoqgieiLwWa67taSseklvEClaKrXvG6gZaMsSQoNCDnGPdaJe"/>  <!--   admin-->
+             <column name="first_name" value="first_name_admin"/>
+             <column name="last_name" value="last_name_admin"/>
+             <column name="role" value="Admin"/>
+             <column name="status" value="Active"/>
+         </insert>
+     </changeSet>
+     <changeSet id="3" author="vladbaransky@gmail.com">
+       <insert tableName="user" schemaName="users">
+           <column name="username" value="user"/>
+           <column name="password" value="$2y$12$tIbh1bj6y0Hsd5ui7AF2mOxAd40bflNXfN.NQMPixQML2aZkBlntW"/>     <!--user-->
+           <column name="first_name" value="first_name_user"/>
+           <column name="last_name" value="last_name_user"/>
+           <column name="role" value="User"/>
+           <column name="status" value="Active"/>
+       </insert>
+   </changeSet>
+</databaseChangeLog>

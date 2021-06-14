@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/button_style.css" th:href="@{/css/button_style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<ul class="sidenav">
+    <li sec:authorize="hasAnyRole('Admin','User')"><a href="/" th:href="@{/}">Home page</a></li>
+    <li sec:authorize="hasAnyRole('Admin','User')"><a href="/list" class="active" th:href="@{/list}">Users list</a></li>
+    <li sec:authorize="hasAnyRole('Admin','User')"><a href="/logout" th:href="@{/logout}">Exit</a></li>
+</ul>
+<div class="content">
+    <form class="searchForm" id="searchForm">
+        <label for="searchInput"></label>
+        <input type="text" id="searchInput" placeholder="Search:" autocomplete="off">
+    </form>
+    <p id="cur_user"></p>
+    <div sec:authorize="hasAnyRole('Admin')">
+        <button id="btn">Add user</button>
+    </div>
+
+    <table>
+        <thead>
+        <tr id="headers">
+        </tr>
+        </thead>
+        <tbody id="table_data">
+        </tbody>
+    </table>
+
+    <!--Add modal window-->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="close" class="close">&times;</span>
+
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">Adding user</h2><br>
+                    <form id="user_add">
+                        <div class="form-group">
+
+                            <label for="username_add">Username:</label>
+                            <input id="username_add" class="form-control" name="username" type="text" required
+                                   pattern="[a-zA-Z]{3,16}" title="Char shoud be latin and length 3-16"
+                                   autocomplete="off" placeholder="Username"><br>
+
+                            <label class="padding" for="password_add">Password:</label>
+                            <input id="password_add" class="form-control" name="password" type="password" required
+                                   pattern="[a-zA-Z0-9]{3,16}" title="Char shoud be latin and length 3-16"
+                                   autocomplete="off" placeholder="Password"><br>
+
+                            <label class="padding" for="confirm_password_add">Confirm Password:</label>
+                            <input id="confirm_password_add" class="form-control" type="password" required
+                                   pattern="[a-zA-Z0-9]{3,16}" title="Char shoud be latin and length 3-16"
+                                   autocomplete="off" placeholder="Confirm Password"><br>
+
+                            <label class="padding" for="first_name_add">First Name:</label>
+                            <input id="first_name_add" class="form-control" name="firstName" type="text" required
+                                   pattern="[a-zA-Z]{1,16}" title="Char shoud be latin and length 1-16"
+                                   autocomplete="off" placeholder="First Name"><br>
+
+                            <label class="padding" for="last_name_add">Last Name:</label>
+                            <input id="last_name_add" class="form-control" name="lastName" type="text" required
+                                   pattern="[a-zA-Z]{1,16}" title="Char shoud be latin and length 1-16"
+                                   autocomplete="off" placeholder="Last Name"><br>
+
+                            <label class="padding" for="role_add">Role:</label>
+                            <select type="text" name="role" class="select" id="role_add">
+                            </select>
+                            <br>
+
+                            <label class="padding" for="status_add">Status:</label>
+                            <select type="text" name="status" class="select" id="status_add">
+                            </select>
+                            <br>
+                        </div>
+
+                        <div class="btn">
+                            <button id="add_button">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--change modal window-->
+    <div id="modal_ref" class="modal">
+        <div class="modal-content">
+            <span id="close1" class="close">&times;</span>
+
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <h2 class="text-center">Refactoring user</h2><br>
+
+
+                    <form id="user_ref">
+                        <div class="form-group">
+
+                            <input id="id_ref" class="form-control" type="hidden" name="id">
+
+                            <label class="padding" for="username_ref">Username:</label>
+                            <input id="username_ref" class="form-control" name="username" type="text" readonly
+                                   autocomplete="off" required placeholder="Username"><br>
+
+                            <label class="padding" for="password_ref">Password:</label>
+                            <input id="password_ref" class="form-control" name="password" type="password"
+                                   autocomplete="off" required placeholder="Password"><br>
+
+                            <label class="padding" for="confirm_password_add">Confirm Password:</label>
+                            <input id="confirm_password_ref" class="form-control" type="password" required
+                                   autocomplete="off" placeholder="Confirm Password"><br>
+
+                            <label class="padding" for="first_name_ref">First Name:</label>
+                            <input id="first_name_ref" class="form-control" name="firstName" type="text"
+                                   autocomplete="off" required placeholder="First Name"><br>
+
+                            <label class="padding" for="last_name_ref">Last Name:</label>
+                            <input id="last_name_ref" class="form-control" name="lastName" type="text"
+                                   autocomplete="off" required placeholder="Last Name"><br>
+
+                            <label class="padding" for="role_ref">Role:</label>
+                            <select type="text" name="role" class="select" id="role_ref">
+                            </select>
+                            <br>
+
+                            <label class="padding" for="status_ref">Status:</label>
+                            <select type="text" name="status" class="select" id="status_ref">
+                            </select>
+                            <br>
+
+                        </div>
+
+                        <div class="btn">
+                            <button id="ref_button">Refactor</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--details modal window-->
+    <div id="modal_details" class="modal">
+        <div class="modal-content">
+            <span id="close_details" class="close">&times;</span>
+
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <h2 class="text-center">User details</h2><br>
+
+                    <form id="user_details">
+                        <div class="form-group">
+
+                            <input id="id_details" class="form-control" type="hidden" name="id">
+
+                            <label class="padding" for="username_details">Username:</label>
+                            <input id="username_details" class="form-control" name="username" type="text" readonly
+                                   autocomplete="off" required placeholder="Username"><br>
+
+                            <label class="padding" for="password_details">Password:</label>
+                            <input id="password_details" class="form-control" name="password" type="password" readonly
+                                   autocomplete="off" required placeholder="Password"><br>
+
+                            <label class="padding" for="first_name_details">First Name:</label>
+                            <input id="first_name_details" class="form-control" name="firstName" type="text" readonly
+                                   autocomplete="off" required placeholder="First Name"><br>
+
+                            <label class="padding" for="last_name_details">Last Name:</label>
+                            <input id="last_name_details" class="form-control" name="lastName" type="text" readonly
+                                   autocomplete="off" required placeholder="Last Name"><br>
+
+                            <label class="padding" for="role_details">Role:</label>
+                            <input id="role_details" class="form-control" name="role" type="text" readonly
+                                   autocomplete="off" required placeholder="Role"><br>
+
+                            <label class="padding" for="status_details">Status:</label>
+                            <select type="text" name="status" class="select" id="status_details" readonly="readonly">
+                            </select>
+                            <br>
+
+                        </div>
+
+                        <div class="btn" sec:authorize="hasAnyRole('Admin')">
+                            <button id="details_button">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+</div>
+<!--<script src="../static/js/form-for-add-user.js" th:src="@{/js/form-for-add-user.js}"></script>-->
+<script type="module" src="../static/js/form-for-add-user.js" th:src="@{/js/form-for-add-user.js}"></script>
+<script type="module" src="../static/js/form-for-refactor-user.js" th:src="@{/js/form-for-refactor-user.js}"></script>
+<script type="module" src="../static/js/form-for-details-user.js" th:src="@{/js/form-for-details-user.js}"></script>
+<script type="module" src="../static/js/user-add-window.js" th:src="@{/js/user-add-window.js}"></script>
+<script type="module" src="../static/js/user-details-window.js" th:src="@{/js/user-details-window.js}"></script>
+<script type="module" src="../static/js/table-users.js" th:src="@{/js/table-users.js}"></script>
+<script src="../static/js/moment-with-locales.min.js" th:src="@{/js/moment-with-locales.min.js}"></script>
+<script src="../static/js/password-confirm.js" th:src="@{/js/password-confirm.js}"></script>
+<script src="../static/js/check-user-for-exists.js" th:src="@{/js/check-user-for-exists.js}"></script>
+<script>
+    let current_user = document.getElementById('cur_user');
+
+    (async function f() {
+        let response = await fetch('./api/cur', {
+            method: 'get'
+        });
+        let result = await response.json();
+        console.log(result);
+        current_user.innerText = 'Current user : ' + result.username
+    })()
+</script>
+</body>
+</html>

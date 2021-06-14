@@ -1,0 +1,105 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.change_btn {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    -ms-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    background-color: transparent;
+    border: 0;
+    box-shadow: inset 0 0 0 1px rgba(160, 160, 160, 0.3);
+    color: #3c3b3b !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Raleway", Helvetica, sans-serif;
+    /*font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;*/
+    font-size: 0.5em;
+    font-weight: 800;
+    height: 2.8125em;
+    letter-spacing: 0.25em;
+    line-height: 2.8125em;
+    padding: 0 0.5em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+}
+
+.change_btn:hover {
+    box-shadow: inset 0 0 0 1px #0a8a28;
+    color: #0a8a28 !important;
+}
+
+input[type="submit"]:hover:active,
+input[type="reset"]:hover:active,
+input[type="button"]:hover:active,
+button:hover:active,
+.button:hover:active {
+    background-color: rgba(46, 186, 174, 0.05);
+}
+
+.modal-content{
+    background-color: #fefefe;
+    margin: 3% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 25%;
+}
+.cont{
+    background-color: #fefefe;
+    margin: 5% 95% 95% 5%;
+    padding: 20px;
+    /*border: 1px solid #888;*/
+    /*border-radius: 5px;*/
+    width: 30%;
+
+
+}
+.close{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: default;
+}
+.important {
+    width: 15%;
+    height: 40px;
+    float: right;
+}
+
+.pagination {
+    display: inline;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 8px;
+    text-decoration: none;
+}
+.btn {
+    float: right;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+

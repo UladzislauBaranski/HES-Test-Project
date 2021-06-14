@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Login</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/access_page.css" th:href="@{/css/access_page.css}">
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+            <h2>User account</h2>
+
+        <h2 th:if="${param.error}">
+            Невозможно войти в систему.
+            Проверьте правильность ввода логина и пароля.
+        </h2>
+        <form method="post" th:action="@{/login}">
+            <input id="username" class="fadeIn second" name="username" type="text" autocomplete="off" placeholder="Username">
+            <input id="password" class="fadeIn third" name="password" type="password" placeholder="Password">
+            <input type="submit" class="fadeIn fourth" value="log in">
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/button_style.css" th:href="@{/css/button_style.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+<body>
+<ul class="sidenav">
+    <li sec:authorize="hasAnyRole('Admin','User')"><a href="/" class="active" th:href="@{/}">Home page</a></li>
+    <li sec:authorize="hasAnyRole('Admin','User')"><a href="/list" th:href="@{/list}">Users list</a></li>
+    <li sec:authorize="hasAnyRole('Admin','User')"><a href="/logout" th:href="@{/logout}">Exit</a></li>
+</ul>
+</body>
+</html>
